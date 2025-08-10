@@ -3,1019 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📋 Menu Prep Chart - ร้านส้มตำ 3 แซ่บ</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .search-filter {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 25px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .search-box input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 8px 16px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .filter-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            background: #f8f9fa;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #6c757d;
-            font-weight: 600;
-        }
-        
-        .menu-sections {
-            padding: 30px;
-        }
-        
-        .menu-category {
-            margin-bottom: 40px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .category-header {
-            padding: 20px 30px;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-align: center;
-            position: relative;
-        }
-        
-        .tamplara { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
-        .tamnotplara { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
-        .fried { background: linear-gradient(135deg, #feca57, #ff9ff3); }
-        .other { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
-        .tomyum { background: linear-gradient(135deg, #a8edea, #fed6e3); }
-        .yam { background: linear-gradient(135deg, #ffb347, #ffcc33); }
-        .rice { background: linear-gradient(135deg, #74b9ff, #0984e3); }
-        .sauce { background: linear-gradient(135deg, #fd79a8, #fdcb6e); }
-        
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-            padding: 30px;
-            background: #f8f9fa;
-        }
-        
-        .menu-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 5px solid #667eea;
-        }
-        
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .menu-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #2d3436;
-            flex: 1;
-        }
-        
-        .menu-time {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            white-space: nowrap;
-            margin-left: 15px;
-        }
-        
-        .ingredients-section {
-            margin-bottom: 20px;
-        }
-        
-        .section-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #495057;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 5px;
-        }
-        
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-        }
-        
-        .ingredient-item {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        
-        .ingredient-item:hover {
-            border-color: #667eea;
-            background: #e3f2fd;
-        }
-        
-        .ingredient-name {
-            font-weight: 600;
-            color: #2d3436;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-        
-        .ingredient-amount {
-            font-weight: 700;
-            color: #e74c3c;
-            font-size: 1.1rem;
-        }
-        
-        .addons-section {
-            background: #fff3e0;
-            border: 2px solid #ffcc02;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        
-        .addons-title {
-            font-weight: 700;
-            color: #e65100;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .addons-list {
-            color: #bf360c;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .method-section {
-            background: #e8f5e8;
-            border: 2px solid #4caf50;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        
-        .method-title {
-            font-weight: 700;
-            color: #2e7d32;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .method-text {
-            color: #1b5e20;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .print-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .print-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; }
-            .print-button, .search-filter { display: none; }
-            .menu-grid { grid-template-columns: repeat(2, 1fr); }
-            .menu-card { break-inside: avoid; margin-bottom: 20px; }
-        }
-        
-        @media (max-width: 768px) {
-            .menu-grid {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-            
-            .search-filter {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .filter-buttons {
-                justify-content: center;
-            }
-            
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .ingredients-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>🍽️ Menu Prep Chart - ร้านส้มตำ 3 แซ่บ</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📋 MENU PREP CHART</h1>
-            <p>ร้านส้มตำ 3 แซ่บ - รายการเตรียมวัตถุดิบแต่ละเมนู</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <button class="back-btn" onclick="goBack()" aria-label="ย้อนกลับ">
+                ←
+            </button>
+            <div class="header-title">
+                <h1>🍽️ Menu Prep Chart</h1>
+                <div class="header-subtitle">ร้านส้มตำ 3 แซ่บ</div>
+            </div>
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="เมนู">
+                ☰
+            </button>
         </div>
-        
-        <div class="search-filter">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 ค้นหาเมนู... (เช่น ตำปลาร้า, หมูย่าง)" onkeyup="filterMenus()">
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterCategory('all')">ทั้งหมด</button>
-                <button class="filter-btn" onclick="filterCategory('tamplara')">ตำปลาร้า</button>
-                <button class="filter-btn" onclick="filterCategory('tamnotplara')">ตำไม่ปลาร้า</button>
-                <button class="filter-btn" onclick="filterCategory('fried')">ทอด/ย่าง</button>
-                <button class="filter-btn" onclick="filterCategory('rice')">กับข้าว</button>
-                <button class="filter-btn" onclick="filterCategory('other')">อื่นๆ</button>
-            </div>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">81</div>
-                <div class="stat-label">เมนูทั้งหมด</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">8</div>
-                <div class="stat-label">หมวดหมู่</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">74</div>
-                <div class="stat-label">วัตถุดิบทั้งหมด</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="visibleMenus">81</div>
-                <div class="stat-label">เมนูที่แสดง</div>
-            </div>
-        </div>
-        
-        <div class="menu-sections">
-            <!-- เมนู ตำใส่ปลาร้า -->
-            <div class="menu-category" data-category="tamplara">
-                <div class="category-header tamplara">
-                    🌶️ เมนู ตำใส่ปลาร้า (30 เมนู)
-                </div>
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ตำปลาร้า</div>
-                            <div class="menu-time">⏱️ 2 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกสด</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกแห้ง</div>
-                                    <div class="ingredient-amount">5 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาลปี๊บ</div>
-                                    <div class="ingredient-amount">40 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ปลาร้า</div>
-                                    <div class="ingredient-amount">50 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">6 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะเขือเทศ</div>
-                                    <div class="ingredient-amount">35 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วฝักยาว</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะละกอ</div>
-                                    <div class="ingredient-amount">140 กรัม</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">ไข่เค็ม, กุ้งแห้ง, ปู, ถั่วลิสงเพิ่ม</div>
-                        </div>
-                        <div class="method-section">
-                            <div class="method-title">👨‍🍳 วิธีทำ</div>
-                            <div class="method-text">ซ้ายไปขวา - ตำให้เข้ากัน</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ตำปูปลาร้า</div>
-                            <div class="menu-time">⏱️ 2 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกสด</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกแห้ง</div>
-                                    <div class="ingredient-amount">5 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาลปี๊บ</div>
-                                    <div class="ingredient-amount">40 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ปลาร้า</div>
-                                    <div class="ingredient-amount">50 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ปู</div>
-                                    <div class="ingredient-amount">1 ตัว</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">6 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะเขือเทศ</div>
-                                    <div class="ingredient-amount">35 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะละกอ</div>
-                                    <div class="ingredient-amount">140 กรัม</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">ไข่เค็ม, กุ้งแห้ง, ถั่วลิสงเพิ่ม</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ตำโคราช</div>
-                            <div class="menu-time">⏱️ 3 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกสด</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกแห้ง</div>
-                                    <div class="ingredient-amount">5 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วลิสง</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาลปี๊บ</div>
-                                    <div class="ingredient-amount">65 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำปลาร้า</div>
-                                    <div class="ingredient-amount">50 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะเขือเทศ</div>
-                                    <div class="ingredient-amount">35 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วฝักยาว</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะละกอ</div>
-                                    <div class="ingredient-amount">190 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">กุ้งแห้ง</div>
-                                    <div class="ingredient-amount">5 กรัม</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">ไข่เค็ม, ปู</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- เมนู ตำไม่ใส่ปลาร้า -->
-            <div class="menu-category" data-category="tamnotplara">
-                <div class="category-header tamnotplara">
-                    🥗 เมนู ตำไม่ใส่ปลาร้า (11 เมนู)
-                </div>
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ตำไทย</div>
-                            <div class="menu-time">⏱️ 2 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกสด</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วลิสง</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาลปี๊บ</div>
-                                    <div class="ingredient-amount">65 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำปลา</div>
-                                    <div class="ingredient-amount">30 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะเขือเทศ</div>
-                                    <div class="ingredient-amount">35 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วฝักยาว</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะละกอ</div>
-                                    <div class="ingredient-amount">140 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">กุ้งแห้ง</div>
-                                    <div class="ingredient-amount">5 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ผักสลัด</div>
-                                    <div class="ingredient-amount">1 ใบ</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">ไข่เค็ม, ปู, ถั่วลิสงเพิ่ม</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ตำไทยปู</div>
-                            <div class="menu-time">⏱️ 3 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกสด</div>
-                                    <div class="ingredient-amount">20 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วลิสง</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาลปี๊บ</div>
-                                    <div class="ingredient-amount">65 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำปลา</div>
-                                    <div class="ingredient-amount">30 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">15 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ปู</div>
-                                    <div class="ingredient-amount">1 ตัว</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะละกอ</div>
-                                    <div class="ingredient-amount">140 กรัม</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">ไข่เค็ม, กุ้งแห้ง</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- เมนูทอด / ย่าง -->
-            <div class="menu-category" data-category="fried">
-                <div class="category-header fried">
-                    🍗 เมนูทอด / ย่าง (4 เมนู)
-                </div>
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ปีกไก่ทอด</div>
-                            <div class="menu-time">⏱️ 8 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ปีกไก่</div>
-                                    <div class="ingredient-amount">6 ชิ้น</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำมันทอด</div>
-                                    <div class="ingredient-amount">170°C</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="method-section">
-                            <div class="method-title">👨‍🍳 วิธีทำ</div>
-                            <div class="method-text">เปิดน้ำมัน 170 องศา / ไก่ลง 6 ชิ้น / พลิกไก่ทุก 1 นาที / ไก่เหลืองกรอบ</div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ เสิร์ฟพร้อม</div>
-                            <div class="addons-list">น้ำจิ้มแจ่ว, ส้มตำ</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">หมูแดดเดียวทอด</div>
-                            <div class="menu-time">⏱️ 5 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หมูแดดเดียว</div>
-                                    <div class="ingredient-amount">1 ถุง</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำมันทอด</div>
-                                    <div class="ingredient-amount">170°C</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="method-section">
-                            <div class="method-title">👨‍🍳 วิธีทำ</div>
-                            <div class="method-text">เปิดน้ำมัน 170 องศา / หมู 1 ถุง / คนเรื่อยๆ</div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ เสิร์ฟพร้อม</div>
-                            <div class="addons-list">น้ำจิ้มแจ่ว, ข้าวเหนียว</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- เมนูกับข้าว -->
-            <div class="menu-category" data-category="rice">
-                <div class="category-header rice">
-                    🍛 เมนูกับข้าว (15 เมนู)
-                </div>
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">หมูผัดพริกแกง</div>
-                            <div class="menu-time">⏱️ 6 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกแกง</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หมูสไลซ์</div>
-                                    <div class="ingredient-amount">120 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">รสดี</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำตาล</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ซีอิ้วขาว</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หอยนางลม</div>
-                                    <div class="ingredient-amount">2 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ใบมะกรูด</div>
-                                    <div class="ingredient-amount">3 ใบ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ถั่วฟักยาว</div>
-                                    <div class="ingredient-amount">1 ฟัก</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ เสิร์ฟพร้อม</div>
-                            <div class="addons-list">ข้าวสวย, ไข่ดาว</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ไข่เจียวหมูสับ</div>
-                            <div class="menu-time">⏱️ 4 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ไข่ไก่</div>
-                                    <div class="ingredient-amount">2 ฟอง</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หมูสับ</div>
-                                    <div class="ingredient-amount">10 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">รสดี</div>
-                                    <div class="ingredient-amount">½ ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ซีอิ้วขาว</div>
-                                    <div class="ingredient-amount">½ ช้อนชา</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ เสิร์ฟพร้อม</div>
-                            <div class="addons-list">ข้าวสวย, น้ำจิ้มแจ่ว</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- เมนูอื่นๆ -->
-            <div class="menu-category" data-category="other">
-                <div class="category-header other">
-                    🍜 เมนูอื่นๆ (21 เมนู)
-                </div>
-                <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ลาบหมู</div>
-                            <div class="menu-time">⏱️ 5 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หมูสับ</div>
-                                    <div class="ingredient-amount">120 กรัม</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำซุป</div>
-                                    <div class="ingredient-amount">1 กระบวย</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกป่น</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">รสดี</div>
-                                    <div class="ingredient-amount">1 ช้อนชา</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">½ ลูก</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ข้าวคั่ว</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">หอมแขก</div>
-                                    <div class="ingredient-amount">ตามใจ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ผักชี</div>
-                                    <div class="ingredient-amount">ตามใจ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ต้นหอม</div>
-                                    <div class="ingredient-amount">ตามใจ</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="method-section">
-                            <div class="method-title">👨‍🍳 วิธีทำ</div>
-                            <div class="method-text">คั่วหมู 1 นาทีให้สุก แล้วปรุงรส ใส่ผักตกแต่ง</div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ เสิร์ฟพร้อม</div>
-                            <div class="addons-list">ผักสด, ข้าวเหนียว</div>
-                        </div>
-                    </div>
-                    
-                    <div class="menu-card">
-                        <div class="menu-header">
-                            <div class="menu-name">ต้มเล้งแซ่บ ไซส์ S</div>
-                            <div class="menu-time">⏱️ 10 นาที</div>
-                        </div>
-                        <div class="ingredients-section">
-                            <div class="section-title">🥗 วัตถุดิบที่ต้องเตรียม</div>
-                            <div class="ingredients-grid">
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำซุป</div>
-                                    <div class="ingredient-amount">6 กระบวย</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">พริกเล้ง</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">น้ำปลา</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ชูรส</div>
-                                    <div class="ingredient-amount">1 ช้อนโต๊ะ</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">มะนาว</div>
-                                    <div class="ingredient-amount">2 ลูก</div>
-                                </div>
-                                <div class="ingredient-item">
-                                    <div class="ingredient-name">ผักชีฝรั่ง</div>
-                                    <div class="ingredient-amount">ตามใจ</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="addons-section">
-                            <div class="addons-title">🍽️ Add-on ที่รองรับ</div>
-                            <div class="addons-list">หมูสับ, กุ้ง, ปลา, เห็ด, ผัก</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <button class="print-button" onclick="window.print()">
-        🖨️ พิมพ์ Menu Chart
-    </button>
+    </header>
 
-    <script>
-        // ฟังก์ชันกรองเมนูตามหมวดหมู่
-        function filterCategory(category) {
-            const categories = document.querySelectorAll('.menu-category');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            // ล้างสถานะปุ่ม
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            if (category === 'all') {
-                categories.forEach(cat => cat.style.display = 'block');
-            } else {
-                categories.forEach(cat => {
-                    if (cat.dataset.category === category) {
-                        cat.style.display = 'block';
-                    } else {
-                        cat.style.display = 'none';
-                    }
-                });
-            }
-            
-            updateVisibleCount();
-        }
+    <!-- Search & Filter Section -->
+    <section class="search-section">
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" 
+                   placeholder="🔍 ค้นหาเมนู หรือ วัตถุดิบ..." 
+                   oninput="searchMenus()" autocomplete="off">
+            <span class="search-icon">🔍</span>
+        </div>
         
-        // ฟังก์ชันค้นหาเมนู
-        function filterMenus() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const menuCards = document.querySelectorAll('.menu-card');
-            
-            menuCards.forEach(card => {
-                const menuName = card.querySelector('.menu-name').textContent.toLowerCase();
-                const ingredients = Array.from(card.querySelectorAll('.ingredient-name'))
-                    .map(ing => ing.textContent.toLowerCase()).join(' ');
-                
-                if (menuName.includes(searchTerm) || ingredients.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            
-            updateVisibleCount();
-        }
+        <div class="filter-chips">
+            <button class="filter-chip active" onclick="filterCategory('all')">ทั้งหมด</button>
+            <button class="filter-chip" onclick="filterCategory('tamplara')">ตำปลาร้า</button>
+            <button class="filter-chip" onclick="filterCategory('tamnotplara')">ตำไม่ปลาร้า</button>
+            <button class="filter-chip" onclick="filterCategory('fried')">ทอด/ย่าง</button>
+            <button class="filter-chip" onclick="filterCategory('rice')">กับข้าว</button>
+            <button class="filter-chip" onclick="filterCategory('tomyum')">ต้มยำ</button>
+            <button class="filter-chip" onclick="filterCategory('yam')">ยำ</button>
+            <button class="filter-chip" onclick="filterCategory('other')">อื่นๆ</button>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number" id="totalMenus">80</div>
+            <div class="stat-label">เมนูทั้งหมด</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">หมวดหมู่</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="visibleMenus">80</div>
+            <div class="stat-label">กำลังแสดง</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="avgTime">3</div>
+            <div class="stat-label">นาที/เมนู</div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div id="menuContainer">
+            <!-- เมนูจะถูกสร้างด้วย JavaScript -->
+        </div>
         
-        // ฟังก์ชันอัพเดทจำนวนเมนูที่แสดง
-        function updateVisibleCount() {
-            const visibleCards = document.querySelectorAll('.menu-card:not([style*="display: none"])');
-            const visibleCategories = document.querySelectorAll('.menu-category:not([style*="display: none"])');
-            
-            document.getElementById('visibleMenus').textContent = visibleCards.length;
-        }
+        <div id="emptyState" class="empty-state hidden">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🔍</div>
+            <h3>ไม่พบเมนูที่ค้นหา</h3>
+            <p>ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่อื่น</p>
+        </div>
         
-        // เริ่มต้น
-        document.addEventListener('DOMContentLoaded', function() {
-            updateVisibleCount();
-        });
-        
-        // เพิ่ม event listener สำหรับ search
-        document.getElementById('searchInput').addEventListener('input', filterMenus);
-    </script>
+        <div id="loadingState" class="loading">
+            <div style="font-size: 2rem; margin-bottom: 10px;">⏳</div>
+            <p>กำลังโหลดเมนู...</p>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-content">
+            <button class="nav-btn active" onclick="showHome()">
+                <span class="nav-icon">🏠</span>
+                หน้าหลัก
+            </button>
+            <button class="nav-btn" onclick="showFavorites()">
+                <span class="nav-icon">⭐</span>
+                รายการโปรด
+            </button>
+            <button class="nav-btn" onclick="showStats()">
+                <span class="nav-icon">📊</span>
+                สถิติ
+            </button>
+            <button class="nav-btn" onclick="printChart()">
+                <span class="nav-icon">🖨️</span>
+                พิมพ์
+            </button>
+            <button class="nav-btn" onclick="showSettings()">
+                <span class="nav-icon">⚙️</span>
+                ตั้งค่า
+            </button>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
 </body>
 </html>
